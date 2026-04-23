@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Ma Bibliothèque personnelle - Catalogue des livres</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: #2a241a;
+            background-image: radial-gradient(circle at 15% 30%, rgba(200, 170, 120, 0.12) 1.5%, transparent 2%);
+            background-size: 32px 32px;
+            padding: 2rem 1rem;
+        }
+
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #fffcf0 0%, #fef5e4 100%);
+            border-radius: 12px;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,220,0.8);
+            overflow: hidden;
+            padding: 2rem 1.5rem 3rem;
+            border: 1px solid #e2cfaa;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 2px solid #e2cfaa;
+            position: relative;
+        }
+        .header:after {
+            content: "✻";
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fef5e4;
+            padding: 0 15px;
+            color: #b87c4f;
+            font-size: 1.3rem;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #5a3e28;
+            letter-spacing: 1px;
+            font-family: 'Cormorant Garamond', serif;
+            text-shadow: 2px 2px 0 rgba(180, 130, 80, 0.1);
+        }
+        .header h1 i {
+            color: #b87c4f;
+            margin-right: 12px;
+        }
+        .header p {
+            color: #8b7356;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        .search-section {
+            background: #f5ecdd;
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border: 1px solid #e2cfaa;
+        }
+        .search-icon {
+            font-size: 1.3rem;
+            color: #b87c4f;
+        }
+        .search-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #e2cfaa;
+            border-radius: 40px;
+            background: white;
+            font-family: 'Montserrat', sans-serif;
+            transition: 0.2s;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #b87c4f;
+            box-shadow: 0 0 0 3px rgba(184,124,79,0.2);
+        }
+        .search-clear {
+            background: #e2cfaa;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: 0.2s;
+            color: #5a3e28;
+        }
+        .search-clear:hover {
+            background: #d4bd8c;
+        }
+
+        .advanced-search-panel {
+            background: #fff8ed;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2cfaa;
+            display: none;
+        }
+        .advanced-search-panel.show {
+            display: block;
+        }
+        .advanced-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed #e2cfaa;
+        }
+        .advanced-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: #5a3e28;
+        }
+        .toggle-advanced {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #b87c4f;
+        }
+        .search-fields {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+        .search-field {
+            display: flex;
+            flex-direction: column;
+        }
+        .search-field label {
+            font-size: 0.7rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #8b7356;
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+        }
+        .search-field input, .search-field select {
+            padding: 0.5rem;
+            border: 1px solid #e2cfaa;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            background: white;
+        }
+        .search-field input:focus, .search-field select:focus {
+            outline: none;
+            border-color: #b87c4f;
+        }
+        .advanced-buttons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            justify-content: flex-end;
+        }
+        .advanced-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .advanced-btn.apply {
+            background: #b87c4f;
+            color: white;
+        }
+        .advanced-btn.reset {
+            background: #e2cfaa;
+            color: #5a3e28;
+        }
+        .results-counter {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            color: #b87c4f;
+            background: #f5ecdd;
+            padding: 0.5rem;
+            border-radius: 30px;
+            display: inline-block;
+            width: auto;
+        }
+
+        .nav-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            border-bottom: 1px dashed #e2cfaa;
+            padding-bottom: 1rem;
+        }
+        .nav-btn {
+            background: #fff8ed;
+            border: 1px solid #e2cfaa;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #6b4e34;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .nav-btn i {
+            margin-right: 6px;
+            font-size: 0.75rem;
+        }
+        .nav-btn:hover {
+            background: #b87c4f;
+            border-color: #b87c4f;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .book-section {
+            margin-bottom: 2.5rem;
+            background: #fffef9;
+            border-radius: 16px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid #eedfc5;
+        }
+        .section-title {
+            background: #f5ecdd;
+            padding: 0.9rem 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: 'Cormorant Garamond', serif;
+            color: #4f3722;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+        .section-title i {
+            color: #b87c4f;
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+
+        .bookshelf {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            padding: 1.2rem;
+            justify-content: flex-start;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            width: 210px;
+            padding: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #eedfc5;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+        .book-card.highlight {
+            background: #fff3e0;
+            transition: 0.3s;
+        }
+
+        /* Styles pour la section Asie */
+        .book-card.langue-originale {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-left: 4px solid #2e7d32;
+        }
+        .book-card.traduction {
+            background: linear-gradient(135deg, #e3f2fd, #bbdef5);
+            border-left: 4px solid #1565c0;
+        }
+        .book-card.bilingue {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 4px solid #ef6c00;
+        }
+
+        /* Styles pour les éditions bilingues français ancien/moderne */
+        .book-card.bilingue-francais {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-left: 4px solid #2e7d32;
+        }
+
+        .badge-langue {
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 5px;
+            text-align: center;
+            font-weight: 600;
+            align-self: center;
+        }
+        .badge-originale { background: #2e7d32; color: white; }
+        .badge-traduction { background: #1565c0; color: white; }
+        .badge-bilingue { background: #ef6c00; color: white; }
+        .badge-bilingue-fr {
+            background: #2e7d32;
+            color: white;
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 5px;
+            text-align: center;
+            font-weight: 600;
+            align-self: center;
+        }
+
+        .book-title {
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin: 8px 0 4px;
+            color: #2c2418;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .book-author {
+            font-size: 0.75rem;
+            color: #7a6a58;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .book-detail {
+            font-size: 0.7rem;
+            color: #7a6a58;
+            margin-bottom: 3px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .book-isbn {
+            font-size: 0.65rem;
+            color: #9b8a72;
+            font-family: monospace;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .book-shelf {
+            margin-top: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #b87c4f;
+            background: #fef1e2;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            align-self: center;
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 170px;
+            background: linear-gradient(145deg, #faf3e8, #f0e5d6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 2.5rem;
+            color: #b87c4f;
+            border: 1px solid #e6d5be;
+            overflow: hidden;
+            position: relative;
+        }
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .book-cover .fallback-icon {
+            z-index: 1;
+        }
+
+        .original-text {
+            font-size: 0.7rem;
+            color: #5d4037;
+            font-style: italic;
+            text-align: center;
+            margin-top: 3px;
+            font-family: 'Noto Sans SC', 'Noto Sans JP', monospace;
+        }
+
+        .langue-origine {
+            font-size: 0.65rem;
+            color: #1565c0;
+            text-align: center;
+            margin-top: 3px;
+            font-style: italic;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 2rem;
+            color: #b87c4f;
+            font-style: italic;
+            width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2cfaa;
+            color: #8b7356;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        /* ========== MODAL POPUP ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            overflow-y: auto;
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #fffcf0 0%, #fef5e4 100%);
+            margin: 3rem auto;
+            max-width: 550px;
+            width: 90%;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border: 1px solid #e2cfaa;
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-header {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 2px solid #e2cfaa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f5ecdd;
+            border-radius: 24px 24px 0 0;
+        }
+        .modal-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #5a3e28;
+            margin: 0;
+        }
+        .close-modal {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #b87c4f;
+            cursor: pointer;
+            transition: 0.2s;
+            line-height: 1;
+        }
+        .close-modal:hover {
+            color: #5a3e28;
+            transform: scale(1.1);
+        }
+        .modal-body {
+            padding: 1.5rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .detail-row {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed #eedfc5;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .detail-label {
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            color: #b87c4f;
+            width: 100px;
+            flex-shrink: 0;
+        }
+        .detail-value {
+            font-size: 0.9rem;
+            color: #4a3724;
+            flex: 1;
+        }
+        .comment-section {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e2cfaa;
+        }
+        .comment-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #5a3e28;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .comment-display {
+            background: #f5ecdd;
+            padding: 0.8rem;
+            border-radius: 16px;
+            margin-top: 0.5rem;
+            font-style: italic;
+            color: #5a3e28;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+        }
+        .comment-empty {
+            color: #9b8a72;
+            font-style: italic;
+        }
+
+        @media (max-width: 700px) {
+            .main-container { padding: 1rem; }
+            .header h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.2rem; }
+            .book-card { width: 160px; }
+            .book-cover { height: 130px; font-size: 1.8rem; }
+            .search-fields { grid-template-columns: 1fr; }
+            .detail-label { width: 80px; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="header">
+        <h1><i class="fas fa-book-open"></i> 家的图书目录</h1>
+        <p>Bibliothèque personnelle — Plus de 700 livres soigneusement répertoriés</p>
+    </div>
+
+    <div class="search-section">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="globalSearch" class="search-input" placeholder="Rechercher dans TOUS les livres (titre, auteur, ISBN, genre, édition, placement)...">
+        <button id="clearSearch" class="search-clear"><i class="fas fa-times"></i> Effacer</button>
+        <button id="toggleAdvanced" class="search-clear" style="background: #b87c4f; color: white;"><i class="fas fa-sliders-h"></i> Avancé</button>
+    </div>
+
+    <div id="advancedPanel" class="advanced-search-panel">
+        <div class="advanced-header" id="advancedHeader">
+            <h3><i class="fas fa-search-plus"></i> Recherche avancée</h3>
+            <button class="toggle-advanced" id="closeAdvanced"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="search-fields">
+            <div class="search-field">
+                <label><i class="fas fa-book"></i> Titre</label>
+                <input type="text" id="advTitre" placeholder="Titre du livre">
+            </div>
+            <div class="search-field">
+                <label><i class="fas fa-user"></i> Auteur</label>
+                <input type="text" id="advAuteur" placeholder="Nom de l'auteur">
+            </div>
+            <div class="search-field">
+                <label><i class="fas fa-tag"></i> Genre</label>
+                <input type="text" id="advGenre" placeholder="Genre littéraire">
+            </div>
+            <div class="search-field">
+                <label><i class="fas fa-barcode"></i> ISBN</label>
+                <input type="text" id="advIsbn" placeholder="ISBN">
+            </div>
+            <div class="search-field">
+                <label><i class="fas fa-print"></i> Édition</label>
+                <input type="text" id="advEdition" placeholder="Maison d'édition">
+            </div>
+            <div class="search-field">
+                <label><i class="fas fa-language"></i> Langue</label>
+                <input type="text" id="advLangue" placeholder="Français, Turc, Anglais...">
+            </div>
+            <div class="search-field">
+                <label><i class="fas fa-exchange-alt"></i> Type édition</label>
+                <select id="advType">
+                    <option value="">Tous</option>
+                    <option value="originale">Langue originale</option>
+                    <option value="traduction">Traduction</option>
+                    <option value="bilingue">Bilingue</option>
+                    <option value="bilingue-francais">Bilingue français ancien/moderne</option>
+                </select>
+            </div>
+            <div class="search-field">
+                <label><i class="fas fa-map-marker-alt"></i> Placement</label>
+                <input type="text" id="advPlacement" placeholder="Étagère, boîte...">
+            </div>
+        </div>
+        <div class="advanced-buttons">
+            <button class="advanced-btn reset" id="resetAdvanced">Réinitialiser</button>
+            <button class="advanced-btn apply" id="applyAdvanced">Rechercher</button>
+        </div>
+    </div>
+
+    <div class="results-counter" id="resultsCounter" style="display: none; text-align: center; margin-bottom: 1rem;"></div>
+
+    <div class="nav-categories">
+        <a href="#section-litterature" class="nav-btn"><i class="fas fa-feather-alt"></i> Littérature française</a>
+        <a href="#section-asie" class="nav-btn"><i class="fas fa-landmark"></i> Asie</a>
+        <a href="#section-academique" class="nav-btn"><i class="fas fa-flask"></i> Académique</a>
+        <a href="#section-autres" class="nav-btn"><i class="fas fa-book"></i> Autres</a>
+        <a href="#section-turc" class="nav-btn"><i class="fas fa-lira-sign"></i> Turc</a>
+        <a href="#section-etranger" class="nav-btn"><i class="fas fa-globe"></i> Langues étrangères</a>
+        <a href="#section-petitprince" class="nav-btn"><i class="fas fa-star"></i> Petit Prince</a>
+        <a href="#section-manga" class="nav-btn"><i class="fas fa-dragon"></i> Mangas/BD</a>
+    </div>
+
+    <div id="section-litterature" class="book-section">
+        <div class="section-title"><i class="fas fa-feather-alt"></i> 📖 Littérature française · 法国文学</div>
+        <div class="bookshelf" id="shelf-litterature"></div>
+    </div>
+
+    <div id="section-asie" class="book-section">
+        <div class="section-title"><i class="fas fa-landmark"></i> 🏮 Littérature asiatique · 亚洲文学</div>
+        <div class="bookshelf" id="shelf-asie"></div>
+    </div>
+
+    <div id="section-academique" class="book-section">
+        <div class="section-title"><i class="fas fa-graduation-cap"></i> 🎓 Ouvrages académiques</div>
+        <div class="bookshelf" id="shelf-academique"></div>
+    </div>
+
+    <div id="section-autres" class="book-section">
+        <div class="section-title"><i class="fas fa-book"></i> 📚 Autres lectures</div>
+        <div class="bookshelf" id="shelf-autres"></div>
+    </div>
+
+    <div id="section-turc" class="book-section">
+        <div class="section-title"><i class="fas fa-lira-sign"></i> 🇹🇷 Türk Edebiyatı · 土耳其文学</div>
+        <div class="bookshelf" id="shelf-turc"></div>
+    </div>
+
+    <div id="section-etranger" class="book-section">
+        <div class="section-title"><i class="fas fa-globe"></i> 🌍 Littérature en langues étrangères</div>
+        <div class="bookshelf" id="shelf-etranger"></div>
+    </div>
+
+    <div id="section-petitprince" class="book-section">
+        <div class="section-title"><i class="fas fa-star"></i> ⭐ Les aventures du Petit Prince</div>
+        <div class="bookshelf" id="shelf-petitprince"></div>
+    </div>
+
+    <div id="section-manga" class="book-section">
+        <div class="section-title"><i class="fas fa-dragon"></i> 🐉 Mangas · Manhwa · BD</div>
+        <div class="bookshelf" id="shelf-manga"></div>
+    </div>
+
+    <footer>
+        <i class="fas fa-feather-alt"></i> Fait par Ali Can — Bibliothèque personnelle
+    </footer>
+</div>
+
+<!-- MODAL POPUP -->
+<div id="bookModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Détails du livre</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <!-- Les détails du livre seront insérés ici -->
+        </div>
+    </div>
+</div>
+
+<script src="livres.js"></script>
+<script>
+    let allBookCards = [];
+
+    // Fonction pour obtenir l'URL de la couverture
+    function getCoverUrl(book) {
+        // 1. Si une couverture locale est spécifiée dans les données
+        if (book.couverture && book.couverture !== "") {
+            return book.couverture;
+        }
+        // 2. Si ISBN valide (non vide et différent de "-")
+        if (book.isbn && book.isbn !== "-" && book.isbn !== "") {
+            // Nettoyer l'ISBN (garder uniquement chiffres et tirets)
+            const cleanIsbn = book.isbn.replace(/[^0-9X]/gi, '');
+            if (cleanIsbn.length >= 10) {
+                // Utiliser Google Books API via l'ISBN
+                return `https://books.google.com/books/content?id=&printsec=frontcover&img=1&zoom=2&source=gbs_api&isbn=${cleanIsbn}`;
+            }
+        }
+        // 3. Pas de couverture disponible
+        return null;
+    }
+
+    // Fonction pour créer l'élément de couverture (image ou icône de secours)
+    function createCoverElement(book, iconClass, bookId) {
+        const coverDiv = document.createElement('div');
+        coverDiv.className = 'book-cover';
+        
+        const coverUrl = getCoverUrl(book);
+        
+        if (coverUrl) {
+            const img = document.createElement('img');
+            img.src = coverUrl;
+            img.alt = `Couverture de ${book.titre || "livre"}`;
+            img.onerror = function() {
+                // Si l'image ne charge pas, afficher l'icône de secours
+                this.style.display = 'none';
+                const fallbackIcon = document.createElement('i');
+                fallbackIcon.className = `fas ${iconClass} fallback-icon`;
+                fallbackIcon.style.zIndex = '1';
+                coverDiv.innerHTML = '';
+                coverDiv.appendChild(fallbackIcon);
+            };
+            coverDiv.appendChild(img);
+        } else {
+            // Pas de couverture, afficher l'icône
+            const icon = document.createElement('i');
+            icon.className = `fas ${iconClass}`;
+            coverDiv.appendChild(icon);
+        }
+        
+        return coverDiv;
+    }
+
+    // Fonction pour ouvrir le modal avec les détails du livre
+    function openBookModal(book, sectionType) {
+        const modal = document.getElementById('bookModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        
+        // Construction du titre
+        modalTitle.innerHTML = `<i class="fas fa-book"></i> ${escapeHtml(book.titre || "Sans titre")}`;
+        
+        // Construction du corps du modal
+        let detailsHtml = `
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-user"></i> Auteur</span>
+                <span class="detail-value">${escapeHtml(book.auteur || "Inconnu")}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-tag"></i> Genre</span>
+                <span class="detail-value">${escapeHtml(book.genre || "-")}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-print"></i> Édition</span>
+                <span class="detail-value">${escapeHtml(book.edition || "-")}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-barcode"></i> ISBN</span>
+                <span class="detail-value">${escapeHtml(book.isbn || "-")}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-map-marker-alt"></i> Placement</span>
+                <span class="detail-value">${escapeHtml(book.placement || "?")}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-globe"></i> Langue</span>
+                <span class="detail-value">${escapeHtml(book.langue || "Non spécifiée")}</span>
+            </div>
+        `;
+        
+        // Détails supplémentaires selon la section
+        if (sectionType === "french" && book.langue_origine) {
+            detailsHtml += `
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-language"></i> Langue d'origine</span>
+                    <span class="detail-value">${escapeHtml(book.langue_origine)}</span>
+                </div>
+            `;
+        }
+        
+        if (sectionType === "asian") {
+            if (book.titre_original) {
+                detailsHtml += `
+                    <div class="detail-row">
+                        <span class="detail-label"><i class="fas fa-pen-fancy"></i> Titre original</span>
+                        <span class="detail-value">${escapeHtml(book.titre_original)}</span>
+                    </div>
+                `;
+            }
+            if (book.auteur_original) {
+                detailsHtml += `
+                    <div class="detail-row">
+                        <span class="detail-label"><i class="fas fa-user"></i> Auteur original</span>
+                        <span class="detail-value">${escapeHtml(book.auteur_original)}</span>
+                    </div>
+                `;
+            }
+            if (book.type) {
+                let typeText = "";
+                switch(book.type) {
+                    case 'originale': typeText = "📖 Langue originale"; break;
+                    case 'traduction': typeText = "📘 Traduction"; break;
+                    case 'bilingue': typeText = "🌍 Bilingue"; break;
+                    default: typeText = book.type;
+                }
+                detailsHtml += `
+                    <div class="detail-row">
+                        <span class="detail-label"><i class="fas fa-exchange-alt"></i> Type</span>
+                        <span class="detail-value">${escapeHtml(typeText)}</span>
+                    </div>
+                `;
+            }
+        }
+        
+        if (book.tome) {
+            detailsHtml += `
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-layer-group"></i> Tome</span>
+                    <span class="detail-value">${escapeHtml(book.tome)}</span>
+                </div>
+            `;
+        }
+        
+        // Section commentaire
+        detailsHtml += `
+            <div class="comment-section">
+                <label class="comment-label"><i class="fas fa-comment-dots"></i> Mon commentaire</label>
+                <div class="comment-display">
+                    ${book.commentaire ? `<i class="fas fa-quote-left"></i> ${escapeHtml(book.commentaire)}` : '<span class="comment-empty"><i class="fas fa-pen"></i> Aucun commentaire pour le moment.</span>'}
+                </div>
+            </div>
+        `;
+        
+        modalBody.innerHTML = detailsHtml;
+        modal.style.display = "block";
+    }
+    
+    // Échapper les caractères HTML pour éviter les injections
+    function escapeHtml(text) {
+        if (!text) return "";
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function createStandardCard(book, icon = "fa-book", section = "litterature", sectionType = "standard") {
+        const card = document.createElement('div');
+        card.className = 'book-card';
+        
+        const coverElement = createCoverElement(book, icon, `${section}_${book.titre}`);
+        
+        card.innerHTML = `
+            <div class="book-cover-container"></div>
+            <div class="book-title">${escapeHtml(book.titre || book.title || "Sans titre")}</div>
+            <div class="book-author"><i class="fas fa-user"></i> ${escapeHtml(book.auteur || book.author || "Inconnu")}</div>
+            <div class="book-detail"><i class="fas fa-tag"></i> ${escapeHtml(book.genre || "-")}</div>
+            <div class="book-detail"><i class="fas fa-print"></i> ${escapeHtml(book.edition || "-")}</div>
+            <div class="book-isbn">ISBN: ${escapeHtml(book.isbn || "-")}</div>
+            <div class="book-shelf"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(book.placement || "?")}</div>
+            ${book.tome ? `<div class="book-detail">Tome: ${escapeHtml(book.tome)}</div>` : ''}
+            <div class="book-detail"><i class="fas fa-globe"></i> ${escapeHtml(book.langue || "Non spécifiée")}</div>
+        `;
+        
+        // Insérer l'élément de couverture
+        const coverContainer = card.querySelector('.book-cover-container');
+        coverContainer.appendChild(coverElement);
+        
+        card.dataset.titre = (book.titre || "").toUpperCase();
+        card.dataset.auteur = (book.auteur || "").toUpperCase();
+        card.dataset.genre = (book.genre || "").toUpperCase();
+        card.dataset.isbn = (book.isbn || "").toUpperCase();
+        card.dataset.edition = (book.edition || "").toUpperCase();
+        card.dataset.langue = (book.langue || "").toUpperCase();
+        card.dataset.placement = (book.placement || "").toUpperCase();
+        card.dataset.type = (book.type || book.type_edition || "").toUpperCase();
+        card.dataset.section = section;
+        
+        const searchText = `${book.titre} ${book.auteur} ${book.isbn} ${book.genre} ${book.edition} ${book.placement} ${book.langue} ${book.type || ""} ${book.type_edition || ""}`.toUpperCase();
+        card.setAttribute('data-search', searchText);
+        
+        // Ajouter l'événement de clic pour ouvrir le modal
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openBookModal(book, sectionType);
+        });
+        
+        return card;
+    }
+
+    function createFrenchCard(book, icon = "fa-book", section = "litterature") {
+        const card = document.createElement('div');
+        
+        let typeClass = '';
+        let badgeHtml = '';
+        
+        if (book.type_edition === 'bilingue-ancien-moderne') {
+            typeClass = 'bilingue-francais';
+            badgeHtml = `<div class="badge-bilingue-fr"><i class="fas fa-exchange-alt"></i> Bilingue : ancien ↔ moderne</div>`;
+        }
+        
+        card.className = `book-card ${typeClass}`;
+        
+        let langueOrigineHtml = '';
+        if (book.traduit === true && book.langue_origine) {
+            langueOrigineHtml = `<div class="langue-origine"><i class="fas fa-language"></i> Traduit du ${escapeHtml(book.langue_origine)}</div>`;
+        }
+        
+        const coverElement = createCoverElement(book, icon, `${section}_${book.titre}`);
+        
+        card.innerHTML = `
+            <div class="book-cover-container"></div>
+            <div class="book-title">${escapeHtml(book.titre || "Sans titre")}</div>
+            <div class="book-author"><i class="fas fa-user"></i> ${escapeHtml(book.auteur || "Inconnu")}</div>
+            <div class="book-detail"><i class="fas fa-tag"></i> ${escapeHtml(book.genre || "-")}</div>
+            <div class="book-detail"><i class="fas fa-print"></i> ${escapeHtml(book.edition || "-")}</div>
+            <div class="book-isbn">ISBN: ${escapeHtml(book.isbn || "-")}</div>
+            <div class="book-shelf"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(book.placement || "?")}</div>
+            ${book.tome ? `<div class="book-detail">Tome: ${escapeHtml(book.tome)}</div>` : ''}
+            <div class="book-detail"><i class="fas fa-globe"></i> ${escapeHtml(book.langue || "Non spécifiée")}</div>
+            ${langueOrigineHtml}
+            ${badgeHtml}
+        `;
+        
+        const coverContainer = card.querySelector('.book-cover-container');
+        coverContainer.appendChild(coverElement);
+        
+        card.dataset.titre = (book.titre || "").toUpperCase();
+        card.dataset.auteur = (book.auteur || "").toUpperCase();
+        card.dataset.genre = (book.genre || "").toUpperCase();
+        card.dataset.isbn = (book.isbn || "").toUpperCase();
+        card.dataset.edition = (book.edition || "").toUpperCase();
+        card.dataset.langue = (book.langue || "").toUpperCase();
+        card.dataset.placement = (book.placement || "").toUpperCase();
+        card.dataset.type = (book.type_edition || "").toUpperCase();
+        card.dataset.section = section;
+        
+        const searchText = `${book.titre} ${book.auteur} ${book.isbn} ${book.genre} ${book.edition} ${book.placement} ${book.langue} ${book.type_edition || ""} ${book.langue_origine || ""}`.toUpperCase();
+        card.setAttribute('data-search', searchText);
+        
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openBookModal(book, "french");
+        });
+        
+        return card;
+    }
+
+    function createAsianCard(book, section = "asie") {
+        const card = document.createElement('div');
+        
+        let typeClass = '';
+        let badgeText = '';
+        let badgeClass = '';
+        let icon = 'fa-book';
+        
+        switch(book.type) {
+            case 'originale':
+                typeClass = 'langue-originale';
+                badgeText = '📖 Langue originale';
+                badgeClass = 'badge-originale';
+                icon = 'fa-japan';
+                break;
+            case 'bilingue':
+                typeClass = 'bilingue';
+                badgeText = '🌍 Bilingue';
+                badgeClass = 'badge-bilingue';
+                icon = 'fa-language';
+                break;
+            default:
+                typeClass = 'traduction';
+                badgeText = '📘 Traduction';
+                badgeClass = 'badge-traduction';
+                icon = 'fa-globe';
+        }
+        
+        card.className = `book-card ${typeClass}`;
+        
+        let originalTextHtml = '';
+        if (book.titre_original || book.auteur_original) {
+            originalTextHtml = `<div class="original-text">
+                <i class="fas fa-pen-fancy"></i> ${escapeHtml(book.titre_original ? book.titre_original : '')}${book.titre_original && book.auteur_original ? ' · ' : ''}${escapeHtml(book.auteur_original ? book.auteur_original : '')}
+            </div>`;
+        }
+        
+        const coverElement = createCoverElement(book, icon, `${section}_${book.titre}`);
+        
+        card.innerHTML = `
+            <div class="book-cover-container"></div>
+            <div class="book-title">${escapeHtml(book.titre || "Sans titre")}</div>
+            ${originalTextHtml}
+            <div class="book-author"><i class="fas fa-user"></i> ${escapeHtml(book.auteur || "Inconnu")}</div>
+            <div class="book-detail"><i class="fas fa-tag"></i> ${escapeHtml(book.genre || "-")}</div>
+            <div class="book-detail"><i class="fas fa-print"></i> ${escapeHtml(book.edition || "-")}</div>
+            <div class="book-isbn">ISBN: ${escapeHtml(book.isbn || "-")}</div>
+            <div class="book-shelf"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(book.placement || "?")}</div>
+            <div class="badge-langue ${badgeClass}" style="align-self: center;">${badgeText}</div>
+            <div class="book-detail"><i class="fas fa-globe"></i> ${escapeHtml(book.langue || "Non spécifiée")}</div>
+        `;
+        
+        const coverContainer = card.querySelector('.book-cover-container');
+        coverContainer.appendChild(coverElement);
+        
+        card.dataset.titre = (book.titre || "").toUpperCase();
+        card.dataset.auteur = (book.auteur || "").toUpperCase();
+        card.dataset.genre = (book.genre || "").toUpperCase();
+        card.dataset.isbn = (book.isbn || "").toUpperCase();
+        card.dataset.edition = (book.edition || "").toUpperCase();
+        card.dataset.langue = (book.langue || "").toUpperCase();
+        card.dataset.placement = (book.placement || "").toUpperCase();
+        card.dataset.type = (book.type || "").toUpperCase();
+        card.dataset.section = section;
+        
+        const searchText = `${book.titre} ${book.auteur} ${book.titre_original} ${book.auteur_original} ${book.isbn} ${book.genre} ${book.edition} ${book.placement} ${book.langue} ${book.type || ""}`.toUpperCase();
+        card.setAttribute('data-search', searchText);
+        
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openBookModal(book, "asian");
+        });
+        
+        return card;
+    }
+
+    function renderShelf(shelfId, booksArray, type = "standard", section = "litterature") {
+        const container = document.getElementById(shelfId);
+        if (!container) return;
+        container.innerHTML = "";
+        booksArray.forEach(book => {
+            let card;
+            if (type === "french") {
+                let icon = book.genre?.includes('Théâtre') ? 'fa-mask' : (book.genre?.includes('Poésie') ? 'fa-feather' : 'fa-book');
+                card = createFrenchCard(book, icon, section);
+            } else if (type === "asian") {
+                card = createAsianCard(book, section);
+            } else {
+                let icon = book.genre?.includes('Théâtre') ? 'fa-mask' : (book.genre?.includes('Poésie') ? 'fa-feather' : 'fa-book');
+                card = createStandardCard(book, icon, section, type);
+            }
+            container.appendChild(card);
+            allBookCards.push(card);
+        });
+    }
+
+    function initBibliotheque() {
+        allBookCards = [];
+        renderShelf("shelf-litterature", livres.litterature, "french", "litterature");
+        renderShelf("shelf-asie", livres.asie, "asian", "asie");
+        renderShelf("shelf-academique", livres.academique, "standard", "academique");
+        renderShelf("shelf-autres", livres.autres, "standard", "autres");
+        renderShelf("shelf-turc", livres.turc, "standard", "turc");
+        renderShelf("shelf-etranger", livres.etranger, "standard", "etranger");
+        renderShelf("shelf-petitprince", livres.petitprince, "standard", "petitprince");
+        renderShelf("shelf-manga", livres.manga, "standard", "manga");
+    }
+
+    function simpleSearch(filterText) {
+        let totalResults = 0;
+        allBookCards.forEach(card => {
+            const searchText = card.getAttribute('data-search') || "";
+            if (filterText === "" || searchText.includes(filterText)) {
+                card.style.display = "";
+                totalResults++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+        updateResultsCounter(totalResults);
+        updateEmptyMessages(filterText);
+    }
+    
+    function advancedSearch() {
+        const titre = document.getElementById('advTitre').value.trim().toUpperCase();
+        const auteur = document.getElementById('advAuteur').value.trim().toUpperCase();
+        const genre = document.getElementById('advGenre').value.trim().toUpperCase();
+        const isbn = document.getElementById('advIsbn').value.trim().toUpperCase();
+        const edition = document.getElementById('advEdition').value.trim().toUpperCase();
+        const langue = document.getElementById('advLangue').value.trim().toUpperCase();
+        const type = document.getElementById('advType').value.toUpperCase();
+        const placement = document.getElementById('advPlacement').value.trim().toUpperCase();
+        
+        let totalResults = 0;
+        
+        allBookCards.forEach(card => {
+            let match = true;
+            
+            if (titre && !(card.dataset.titre || "").includes(titre)) match = false;
+            if (auteur && !(card.dataset.auteur || "").includes(auteur)) match = false;
+            if (genre && !(card.dataset.genre || "").includes(genre)) match = false;
+            if (isbn && !(card.dataset.isbn || "").includes(isbn)) match = false;
+            if (edition && !(card.dataset.edition || "").includes(edition)) match = false;
+            if (langue && !(card.dataset.langue || "").includes(langue)) match = false;
+            if (placement && !(card.dataset.placement || "").includes(placement)) match = false;
+            if (type && !(card.dataset.type || "").includes(type)) match = false;
+            
+            if (match) {
+                card.style.display = "";
+                totalResults++;
+                card.classList.add('highlight');
+                setTimeout(() => card.classList.remove('highlight'), 1000);
+            } else {
+                card.style.display = "none";
+            }
+        });
+        
+        updateResultsCounter(totalResults);
+        updateEmptyMessages(titre || auteur || genre || isbn || edition || langue || type || placement ? "recherche" : "");
+    }
+    
+    function updateResultsCounter(total) {
+        const counter = document.getElementById('resultsCounter');
+        if (total > 0 && total < allBookCards.length) {
+            counter.style.display = "block";
+            counter.innerHTML = `<i class="fas fa-chart-line"></i> ${total} livre(s) trouvé(s) sur ${allBookCards.length}`;
+        } else if (total === allBookCards.length) {
+            counter.style.display = "none";
+        } else if (total === 0) {
+            counter.style.display = "block";
+            counter.innerHTML = `<i class="fas fa-info-circle"></i> Aucun livre trouvé. Essayez d'autres critères.`;
+        } else {
+            counter.style.display = "none";
+        }
+    }
+    
+    function updateEmptyMessages(filterActive) {
+        const sections = document.querySelectorAll('.bookshelf');
+        sections.forEach(shelf => {
+            const visibleCards = Array.from(shelf.children).filter(c => c.style.display !== "none");
+            let msgDiv = shelf.parentElement.querySelector('.empty-shelf-msg');
+            if (visibleCards.length === 0 && filterActive !== "") {
+                if (!msgDiv) {
+                    const emptyMsg = document.createElement('div');
+                    emptyMsg.className = 'empty-message empty-shelf-msg';
+                    emptyMsg.innerHTML = '<i class="fas fa-info-circle"></i> Aucun livre trouvé dans cette section.';
+                    shelf.parentElement.appendChild(emptyMsg);
+                }
+            } else {
+                if (msgDiv) msgDiv.remove();
+            }
+        });
+    }
+    
+    function resetAdvanced() {
+        document.getElementById('advTitre').value = '';
+        document.getElementById('advAuteur').value = '';
+        document.getElementById('advGenre').value = '';
+        document.getElementById('advIsbn').value = '';
+        document.getElementById('advEdition').value = '';
+        document.getElementById('advLangue').value = '';
+        document.getElementById('advType').value = '';
+        document.getElementById('advPlacement').value = '';
+        document.getElementById('globalSearch').value = '';
+        simpleSearch('');
+    }
+    
+    const searchInput = document.getElementById('globalSearch');
+    const clearBtn = document.getElementById('clearSearch');
+    const toggleAdvanced = document.getElementById('toggleAdvanced');
+    const closeAdvanced = document.getElementById('closeAdvanced');
+    const advancedPanel = document.getElementById('advancedPanel');
+    const applyAdvanced = document.getElementById('applyAdvanced');
+    const resetAdvancedBtn = document.getElementById('resetAdvanced');
+    
+    searchInput.addEventListener('keyup', () => {
+        simpleSearch(searchInput.value.trim().toUpperCase());
+    });
+    
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        resetAdvanced();
+    });
+    
+    toggleAdvanced.addEventListener('click', () => {
+        advancedPanel.classList.toggle('show');
+    });
+    
+    closeAdvanced.addEventListener('click', () => {
+        advancedPanel.classList.remove('show');
+    });
+    
+    applyAdvanced.addEventListener('click', advancedSearch);
+    resetAdvancedBtn.addEventListener('click', resetAdvanced);
+    
+    const advancedInputs = document.querySelectorAll('#advancedPanel input, #advancedPanel select');
+    advancedInputs.forEach(input => {
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                advancedSearch();
+            }
+        });
+    });
+    
+    // Fermeture du modal
+    const modal = document.getElementById('bookModal');
+    const closeModalBtn = document.querySelector('.close-modal');
+    
+    closeModalBtn.addEventListener('click', () => {
+        modal.style.display = "none";
+    });
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+    
+    initBibliotheque();
+    simpleSearch('');
+</script>
+</body>
+</html>
