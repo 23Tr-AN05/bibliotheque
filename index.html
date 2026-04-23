@@ -718,16 +718,10 @@
 <script>
     let allBookCards = [];
 
-    // Récupère l'URL de la couverture (locale ou Google Books)
+    // UNIQUEMENT les images du dossier images/
     function getCoverUrl(book) {
         if (book.couverture && book.couverture !== "") {
             return book.couverture;
-        }
-        if (book.isbn && book.isbn !== "-" && book.isbn !== "") {
-            const cleanIsbn = book.isbn.replace(/[^0-9X]/gi, '');
-            if (cleanIsbn.length >= 10) {
-                return `https://books.google.com/books/content?id=&printsec=frontcover&img=1&zoom=1&source=gbs_api&isbn=${cleanIsbn}`;
-            }
         }
         return null;
     }
