@@ -298,7 +298,6 @@
             transition: 0.3s;
         }
 
-        /* Styles pour la section Asie */
         .book-card.langue-originale {
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             border-left: 4px solid #2e7d32;
@@ -311,8 +310,6 @@
             background: linear-gradient(135deg, #fff3e0, #ffe0b2);
             border-left: 4px solid #ef6c00;
         }
-
-        /* Styles pour les éditions bilingues français ancien/moderne */
         .book-card.bilingue-francais {
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             border-left: 4px solid #2e7d32;
@@ -452,7 +449,6 @@
             font-style: italic;
         }
 
-        /* ========== MODAL POPUP ========== */
         .modal {
             display: none;
             position: fixed;
@@ -693,16 +689,13 @@
     </footer>
 </div>
 
-<!-- MODAL POPUP -->
 <div id="bookModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
             <h2 id="modalTitle">Détails du livre</h2>
             <span class="close-modal">&times;</span>
         </div>
-        <div class="modal-body" id="modalBody">
-            <!-- Les détails du livre seront insérés ici -->
-        </div>
+        <div class="modal-body" id="modalBody"></div>
     </div>
 </div>
 
@@ -710,27 +703,14 @@
 <script>
     let allBookCards = [];
 
-    // Fonction pour obtenir l'URL de la couverture
     function getCoverUrl(book) {
-        // 1. Si une couverture locale est spécifiée dans les données
         if (book.couverture && book.couverture !== "") {
             return book.couverture;
         }
-        // 2. Si ISBN valide (non vide et différent de "-")
-        if (book.isbn && book.isbn !== "-" && book.isbn !== "") {
-            // Nettoyer l'ISBN (garder uniquement chiffres et tirets)
-            const cleanIsbn = book.isbn.replace(/[^0-9X]/gi, '');
-            if (cleanIsbn.length >= 10) {
-                // Utiliser Google Books API via l'ISBN
-                return `https://books.google.com/books/content?id=&printsec=frontcover&img=1&zoom=2&source=gbs_api&isbn=${cleanIsbn}`;
-            }
-        }
-        // 3. Pas de couverture disponible
         return null;
     }
 
-    // Fonction pour créer l'élément de couverture (image ou icône de secours)
-    function createCoverElement(book, iconClass, bookId) {
+    function createCoverElement(book, iconClass) {
         const coverDiv = document.createElement('div');
         coverDiv.className = 'book-cover';
         
@@ -741,17 +721,14 @@
             img.src = coverUrl;
             img.alt = `Couverture de ${book.titre || "livre"}`;
             img.onerror = function() {
-                // Si l'image ne charge pas, afficher l'icône de secours
                 this.style.display = 'none';
                 const fallbackIcon = document.createElement('i');
                 fallbackIcon.className = `fas ${iconClass} fallback-icon`;
-                fallbackIcon.style.zIndex = '1';
                 coverDiv.innerHTML = '';
                 coverDiv.appendChild(fallbackIcon);
             };
             coverDiv.appendChild(img);
         } else {
-            // Pas de couverture, afficher l'icône
             const icon = document.createElement('i');
             icon.className = `fas ${iconClass}`;
             coverDiv.appendChild(icon);
@@ -760,16 +737,13 @@
         return coverDiv;
     }
 
-    // Fonction pour ouvrir le modal avec les détails du livre
     function openBookModal(book, sectionType) {
         const modal = document.getElementById('bookModal');
         const modalTitle = document.getElementById('modalTitle');
         const modalBody = document.getElementById('modalBody');
         
-        // Construction du titre
         modalTitle.innerHTML = `<i class="fas fa-book"></i> ${escapeHtml(book.titre || "Sans titre")}`;
         
-        // Construction du corps du modal
         let detailsHtml = `
             <div class="detail-row">
                 <span class="detail-label"><i class="fas fa-user"></i> Auteur</span>
@@ -797,7 +771,6 @@
             </div>
         `;
         
-        // Détails supplémentaires selon la section
         if (sectionType === "french" && book.langue_origine) {
             detailsHtml += `
                 <div class="detail-row">
@@ -850,7 +823,6 @@
             `;
         }
         
-        // Section commentaire
         detailsHtml += `
             <div class="comment-section">
                 <label class="comment-label"><i class="fas fa-comment-dots"></i> Mon commentaire</label>
@@ -864,7 +836,6 @@
         modal.style.display = "block";
     }
     
-    // Échapper les caractères HTML pour éviter les injections
     function escapeHtml(text) {
         if (!text) return "";
         const div = document.createElement('div');
@@ -876,7 +847,7 @@
         const card = document.createElement('div');
         card.className = 'book-card';
         
-        const coverElement = createCoverElement(book, icon, `${section}_${book.titre}`);
+        const coverElement = createCoverElement(book, icon);
         
         card.innerHTML = `
             <div class="book-cover-container"></div>
@@ -890,7 +861,6 @@
             <div class="book-detail"><i class="fas fa-globe"></i> ${escapeHtml(book.langue || "Non spécifiée")}</div>
         `;
         
-        // Insérer l'élément de couverture
         const coverContainer = card.querySelector('.book-cover-container');
         coverContainer.appendChild(coverElement);
         
@@ -907,7 +877,6 @@
         const searchText = `${book.titre} ${book.auteur} ${book.isbn} ${book.genre} ${book.edition} ${book.placement} ${book.langue} ${book.type || ""} ${book.type_edition || ""}`.toUpperCase();
         card.setAttribute('data-search', searchText);
         
-        // Ajouter l'événement de clic pour ouvrir le modal
         card.addEventListener('click', (e) => {
             e.stopPropagation();
             openBookModal(book, sectionType);
@@ -934,7 +903,7 @@
             langueOrigineHtml = `<div class="langue-origine"><i class="fas fa-language"></i> Traduit du ${escapeHtml(book.langue_origine)}</div>`;
         }
         
-        const coverElement = createCoverElement(book, icon, `${section}_${book.titre}`);
+        const coverElement = createCoverElement(book, icon);
         
         card.innerHTML = `
             <div class="book-cover-container"></div>
@@ -1011,7 +980,7 @@
             </div>`;
         }
         
-        const coverElement = createCoverElement(book, icon, `${section}_${book.titre}`);
+        const coverElement = createCoverElement(book, icon);
         
         card.innerHTML = `
             <div class="book-cover-container"></div>
@@ -1218,7 +1187,6 @@
         });
     });
     
-    // Fermeture du modal
     const modal = document.getElementById('bookModal');
     const closeModalBtn = document.querySelector('.close-modal');
     
