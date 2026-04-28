@@ -46,7 +46,7 @@ const livres = {
     petitprince: [
         { titre: "Le Petit Prince", auteur: "Saint-Exupéry", genre: "Conte", edition: "Folio", isbn: "2-07-040850-7", placement: "S1", langue: "Français", commentaire: "L'original en français. ", couverture: "images/petit-prince.jpg" },
         { titre: "Le Petit Prince", auteur: "Saint-Exupéry", genre: "Conte", edition: "Folio Junior", isbn: "", placement: "C1", langue: "Français", commentaire: "L'original en français. ", couverture: "images/petit-prin-junio.jpg" },
-        { titre: "小王子", auteur: "Saint-Exupéry", genre: "Conte", edition: "果麦", isbn: "978-7-201-07764-2", placement: "C1", langue: "汉语 / Chinois", commentaire: "Version chinoise du Petit Prince.", couverture: "images/xiao-wang-zi" },
+        { titre: "小王子", auteur: "Saint-Exupéry", genre: "Conte", edition: "果麦", isbn: "978-7-201-07764-2", placement: "C1", langue: "汉语 / Chinois", commentaire: "Version chinoise du Petit Prince.", couverture: "images/xiao-wang-zi.jpg" },
         { titre: "Küçük Prens", auteur: "Saint-Exupéry", genre: "Conte", edition: "Bulut", isbn: "", placement: "C1", langue: "Turc", commentaire: "Version turque du Petit Prince.", couverture: "images/kucuk-prens.jpg" },
         { titre: "малкият принц", auteur: "Saint-Exupéry", genre: "Conte", edition: "", isbn: "", placement: "C1", langue: "Bulgar", commentaire: "Version bulgare du Petit Prince.", couverture: "images/malkiat-prin.jpg" },       
         { titre: "Il Piccolo Principe", auteur: "Saint-Exupéry", genre: "Conte", edition: "", isbn: "", placement: "C1", langue: "Italiano", commentaire: "Version bulgare du Petit Prince.", couverture: "images/il-piccolo.jpg" } ,
