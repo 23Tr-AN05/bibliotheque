@@ -49,8 +49,8 @@ const livres = {
         { titre: "小王子", auteur: "Saint-Exupéry", genre: "Conte", edition: "果麦", isbn: "978-7-201-07764-2", placement: "C1", langue: "汉语 / Chinois", commentaire: "Version chinoise du Petit Prince.", couverture: "images/xiao-wang-zi.jpg" },
         { titre: "Küçük Prens", auteur: "Saint-Exupéry", genre: "Conte", edition: "Bulut", isbn: "", placement: "C1", langue: "Turc", commentaire: "Version turque du Petit Prince.", couverture: "images/kucuk-prens.jpg" },
         { titre: "малкият принц", auteur: "Saint-Exupéry", genre: "Conte", edition: "", isbn: "", placement: "C1", langue: "Bulgar", commentaire: "Version bulgare du Petit Prince.", couverture: "images/malkiat-prin.jpg" },       
-        { titre: "Il Piccolo Principe", auteur: "Saint-Exupéry", genre: "Conte", edition: "", isbn: "", placement: "C1", langue: "Italiano", commentaire: "Version bulgare du Petit Prince.", couverture: "images/il-piccolo.jpg" } ,
-        { titre: "星の王子さま", auteur: "Saint-Exupéry", genre: "Conte", edition: "", isbn: "", placement: "C1", langue: "日本語 / Japonais", commentaire: "Version bulgare du Petit Prince.", couverture: "images/xingkowangzi.jpg" }
+        { titre: "Il Piccolo Principe", auteur: "Saint-Exupéry", genre: "Conte", edition: "", isbn: "", placement: "C1", langue: "Italiano", commentaire: "Version italienne du Petit Prince.", couverture: "images/il-piccolo.jpg" } ,
+        { titre: "星の王子さま", auteur: "Saint-Exupéry", genre: "Conte", edition: "", isbn: "", placement: "C1", langue: "日本語 / Japonais", commentaire: "Version japonaise du Petit Prince.", couverture: "images/xingkowangzi.jpg" }
     ],
     manga: [
         { titre: "Magus of the Library", auteur: "Mitsu Izumi", genre: "Manga", edition: "-", isbn: "979-10-327-0467-7", placement: "T", tome: "1", langue: "Français", commentaire: "Manga magnifique sur la passion des livres et des bibliothèques.", couverture: "" }
