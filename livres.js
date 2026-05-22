@@ -2,6 +2,7 @@
 // Tous les livres sont organisés par section
 // Le champ "couverture" permet d'indiquer le chemin vers une image locale (ex: "images/mon_livre.jpg")
 // Laissez vide "" pour utiliser l'icône par défaut
+//{ titre: "", auteur:"", genre: "", edition: "", isbn: "", placement: "", langue: "", langue_origine: "", traduit: true, type_edition: "moderne", commentaire: "", couverture: "images/jpg" },
 
 const livres = {
     litterature: [
@@ -18,7 +19,10 @@ const livres = {
         { titre: "Phèdre", auteur: "Jean Racine", genre: "Théâtre classique", edition: "Folio", isbn: "978-2-07-041367-6", placement: "C2", langue: "Français", langue_origine: null, traduit: false, type_edition: "bilingue-ancien-moderne", commentaire: "", couverture: "" },
         { titre: "Les Essais", auteur: "Michel de Montaigne", genre: "Essai philosophique", edition: "PUF", isbn: "978-2-13-058010-2", placement: "C1", langue: "Français (moyen français)", langue_origine: null, traduit: false, type_edition: "bilingue-ancien-moderne", commentaire: "", couverture: "" },
         { titre: "Lais", auteur: "Marie de France", genre: "Littérature médiévale", edition: "Folio classique", isbn: "978-2-07-288456-6", placement: "T", langue: "Français (ancien français)", langue_origine: null, traduit: false, type_edition: "bilingue-ancien-moderne", commentaire: "", couverture: "images/Lais-MdeF.jpg" },
-        { titre: "Lais", auteur: "Marie de France", genre: "Littérature médiévale", edition: "Folio classique", isbn: "978-2-07-288456-6", placement: "T", langue: "Français", langue_origine: null , traduit: false , type_edition: "bilingue-ancien-moderne", commentaire: "", couverture: "images/Lais-MdeF.jpg" }
+        { titre: "Lais", auteur: "Marie de France", genre: "Littérature médiévale", edition: "Folio classique", isbn: "978-2-07-288456-6", placement: "T", langue: "Français", langue_origine: null , traduit: false , type_edition: "bilingue-ancien-moderne", commentaire: "", couverture: "images/Lais-MdeF.jpg" },
+        { titre: "Odyssée des filles de l'Est", auteur:"Elitza Guerguieva", genre: "Fiction", edition: "Folio", isbn: "978-2-07-311564-5", placement: "S", langue: "Français", langue_origine: null , traduit: false, type_edition: "moderne", commentaire: "", couverture: "images/Elitza-odyssee.jpg" },
+        { titre: "Les cosmonautes ne font que passer", auteur:"Elitza Guerguieva", genre: "Fiction", edition: "Folio", isbn: "978-2-07-276502-5", placement: "S", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "images/elitza-cosmo.jpg" },
+        { titre: "L'alphabet des femmes", auteur:"Guéorgui Gospodinov", genre: "Roman", edition: "arléa", isbn: "", placement: "S", langue: "Français", langue_origine: "Bulgare", traduit: true, type_edition: "moderne", commentaire: "", couverture: "images/ab-femme.jpg" }
     ],
     asie: [
         { titre: "Histoire de ma vie", titre_original: "我这一辈子", auteur: "Lao She", auteur_original: "老舍", genre: "Fiction", edition: "Folio", isbn: "978-2-07-042208-1", placement: "C1", type: "traduction", langue: "Chinois → Français", commentaire: "Un regard poignant sur la Chine du XXe siècle.", couverture: "" },
