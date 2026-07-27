@@ -205,7 +205,9 @@ const livres = {
         { titre: "La place", auteur: "Annie Ernaux", genre:"Roman", edition:"Folio" , isbn:"978-2-07-037722-0", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/ernaux-1.jpg"},
         { titre: "La honte", auteur: "Annie Ernaux", genre:"Roman", edition:"Gallimard" , isbn:"2-07-074787-5", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/ernaux-2.jpg"},
         { titre: "Les Mystères d'Udolphe", auteur: "Ann Radcliffe", genre:"Roman Gothique", edition:"Folio classique" , isbn:"978-2-07-040377-6", placement:"C3", langue:"Français", langue_origine: "Anglais", traduit: true , type_edition: "moderne", commentaire:"Livre cité dans <em>Northanger Abbey</em> de Jane Austen ", couverture:"images/ann-1.jpg"},
-        { titre: "Du côté de chez Swann", auteur: "Proust", genre:"Roman", edition:"Folio classique" , isbn:"978-2-07-037924-8", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/proust-1.jpg"}
+        { titre: "Du côté de chez Swann", auteur: "Proust", genre:"Roman", edition:"Folio classique" , isbn:"978-2-07-037924-8", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/proust-1.jpg"},
+        { titre: "Le chemin", auteur: "Miguel Delibes", genre:"Roman", edition:"Verdier" , isbn:"", placement:"C3", langue:"Français", langue_origine: "Espagnol", traduit: true , type_edition: "moderne", commentaire:"-", couverture:"images/delibes-1.jpg"},
+        { titre: "Discours sur le colonialisme", auteur: "Aimé Césaire", genre:"Discours", edition:"Présence africaine" , isbn:"", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/cesaire-1.jpg"}
     ],
 
     asie: [
