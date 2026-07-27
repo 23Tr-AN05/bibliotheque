@@ -315,6 +315,25 @@
             border-left: 4px solid #c75a8a;
         }
 
+        /* ===== NOUVEAU STYLE pour "bilingue" standard dans Littérature (Ambre) ===== */
+        /* MODIFICATION 1 : ajout des règles CSS pour la classe "bilingue-standard" */
+        .book-card.bilingue-standard {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border-left: 4px solid #f57f17;
+        }
+        .badge-bilingue-standard {
+            background: #f57f17;
+            color: white;
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 5px;
+            text-align: center;
+            font-weight: 600;
+            align-self: center;
+        }
+
         .badge-langue {
             display: inline-block;
             font-size: 0.6rem;
@@ -840,6 +859,21 @@
                 `;
             }
         }
+
+        // ===== MODIFICATION 3 : Affichage du type_edition pour la section française =====
+        if (sectionType === "french" && book.type_edition) {
+            let typeDisplay = book.type_edition;
+            if (typeDisplay === 'bilingue-ancien-moderne') typeDisplay = 'Bilingue (ancien ↔ moderne)';
+            else if (typeDisplay === 'bilingue') typeDisplay = 'Bilingue (texte original)';
+            else if (typeDisplay === 'moderne') typeDisplay = 'Édition moderne';
+            else typeDisplay = typeDisplay.charAt(0).toUpperCase() + typeDisplay.slice(1);
+            detailsHtml += `
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-cog"></i> Type d'édition</span>
+                    <span class="detail-value">${escapeHtml(typeDisplay)}</span>
+                </div>
+            `;
+        }
         
         if (book.tome) {
             detailsHtml += `
@@ -912,6 +946,7 @@
         return card;
     }
 
+    // ===== MODIFICATION 2 : fonction createFrenchCard modifiée =====
     function createFrenchCard(book, icon = "fa-book", section = "litterature") {
         const card = document.createElement('div');
         
@@ -921,6 +956,10 @@
         if (book.type_edition === 'bilingue-ancien-moderne') {
             typeClass = 'bilingue-francais';
             badgeHtml = `<div class="badge-bilingue-fr"><i class="fas fa-exchange-alt"></i> Bilingue : ancien ↔ moderne</div>`;
+        } else if (book.type_edition === 'bilingue') {
+            // Nouveau cas pour "bilingue" standard
+            typeClass = 'bilingue-standard';
+            badgeHtml = `<div class="badge-bilingue-standard"><i class="fas fa-language"></i> Bilingue (texte original)</div>`;
         }
         
         card.className = `book-card ${typeClass}`;
