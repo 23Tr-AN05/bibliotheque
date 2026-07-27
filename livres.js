@@ -251,7 +251,13 @@ const livres = {
 
     scolaire: [
         // Exemple :
-        { titre: "L'énigme du clou chinois", auteur: "Robert Van Gulik", genre:"Roman", edition:"10/18" , isbn:"978-2-07-00696-7", placement:"C3", langue:"Français", langue_origine: Anglais , traduit: true , type_edition: "moderne", commentaire:"-", couverture:"images/gulik-1.jpg"}
+        { titre: "Sindbad le marin (Les milles et Une Nuits)", auteur: "-", genre:"Roman", edition:"Librio 2€" , isbn:"978-2-290-17353-4", placement:"C3", langue:"Français", langue_origine: "Anglais" , traduit: true , type_edition: "moderne", commentaire:"-", couverture:"images/1001nuit.jpg"}
+    ],
+
+    litterature2: [
+        // Exemple :
+        { titre: "L'énigme du clou chinois", auteur: "Robert Van Gulik", genre:"Roman", edition:"10/18" , isbn:"978-2-07-00696-7", placement:"C3", langue:"Français", langue_origine: "Anglais" , traduit: true , type_edition: "moderne", commentaire:"-", couverture:"images/gulik-1.jpg"}
+        // Ajoutez vos livres ici
     ],
 
     autres: [
