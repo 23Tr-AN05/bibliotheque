@@ -601,7 +601,6 @@
         <a href="#section-academique" class="nav-btn"><i class="fas fa-flask"></i> Académique</a>
         <a href="#section-jeunesse" class="nav-btn"><i class="fas fa-child"></i> Jeunesse</a>
         <a href="#section-scolaire" class="nav-btn"><i class="fas fa-school"></i> Scolaire</a>
-        <!-- ===== NOUVEAU BOUTON Littérature 2 ===== -->
         <a href="#section-litterature2" class="nav-btn"><i class="fas fa-feather-alt"></i> Littérature 2</a>
         <a href="#section-autres" class="nav-btn"><i class="fas fa-book"></i> Autres</a>
         <a href="#section-turc" class="nav-btn"><i class="fas fa-lira-sign"></i> Turc</a>
@@ -637,7 +636,6 @@
         <div class="bookshelf" id="shelf-scolaire"></div>
     </div>
 
-    <!-- ===== NOUVELLE SECTION Littérature 2 ===== -->
     <div id="section-litterature2" class="book-section">
         <div class="section-title"><i class="fas fa-feather-alt"></i> 📖 Littérature 2 · 文学 2</div>
         <div class="bookshelf" id="shelf-litterature2"></div>
@@ -725,7 +723,7 @@
         return div.innerHTML;
     }
 
-    // ===== MODAL =====
+    // ===== MODAL (sans la ligne "Type d'édition") =====
     function openBookModal(book, sectionType) {
         const modal = document.getElementById('bookModal');
         const modalTitle = document.getElementById('modalTitle');
@@ -760,15 +758,6 @@
                 }
                 detailsHtml += `<div class="detail-row"><span class="detail-label"><i class="fas fa-exchange-alt"></i> Type</span><span class="detail-value">${escapeHtml(typeText)}</span></div>`;
             }
-        }
-
-        if ((sectionType === "french" || sectionType === "french2") && book.type_edition) {
-            let typeDisplay = book.type_edition;
-            if (typeDisplay === 'bilingue-ancien-moderne') typeDisplay = 'Bilingue (ancien ↔ moderne)';
-            else if (typeDisplay === 'bilingue') typeDisplay = 'Bilingue (texte original)';
-            else if (typeDisplay === 'moderne') typeDisplay = 'Édition moderne';
-            else typeDisplay = typeDisplay.charAt(0).toUpperCase() + typeDisplay.slice(1);
-            detailsHtml += `<div class="detail-row"><span class="detail-label"><i class="fas fa-cog"></i> Type d'édition</span><span class="detail-value">${escapeHtml(typeDisplay)}</span></div>`;
         }
 
         if (book.tome) detailsHtml += `<div class="detail-row"><span class="detail-label"><i class="fas fa-layer-group"></i> Tome</span><span class="detail-value">${escapeHtml(book.tome)}</span></div>`;
@@ -953,7 +942,6 @@
         renderShelf("shelf-academique", livres.academique, "standard", "academique");
         renderShelf("shelf-jeunesse", livres.jeunesse, "standard", "jeunesse");
         renderShelf("shelf-scolaire", livres.scolaire, "standard", "scolaire");
-        // ===== NOUVEAU : Littérature 2 avec le même rendu que "french" =====
         renderShelf("shelf-litterature2", livres.litterature2, "french", "litterature2");
         renderShelf("shelf-autres", livres.autres, "standard", "autres");
         renderShelf("shelf-turc", livres.turc, "standard", "turc");

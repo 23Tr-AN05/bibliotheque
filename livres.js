@@ -195,12 +195,12 @@ const livres = {
         { titre: "Hernani", auteur: "Victor HUGO", genre: "Théâtre", edition: "Librio 2€", isbn: "978-2-290-07565-4", placement: "T", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "L'épopée de Gilgamesh", auteur: "-", genre: "Épopée", edition: "Folio Junior", isbn: "978-2-07-062761-5", placement: "T", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "La tragédie de Richard III", auteur: "Shakespeare", genre: "Théâtre", edition: "Folio théâtre", isbn: "978-2-07-046766-2", placement: "C1", langue: "Français", langue_origine: "Anglais", traduit: true, type_edition: "moderne", commentaire: "", couverture: "" },
-        { titre: " Les mots imigrés", auteur: " Erik Orsenna , Bernard Cerquiglini ", genre:"-", edition:"Le livre de poche" , isbn:"978-2-253-94095-1", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/orse-1.jpg"},
+        { titre: " Les mots immigrés", auteur: " Erik Orsenna , Bernard Cerquiglini ", genre:"-", edition:"Le livre de poche" , isbn:"978-2-253-94095-1", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/orse-1.jpg"},
         { titre: "La Tragédie de Richard III", auteur: "Shakespeare", genre: "Théâtre", edition: "Folio théâtre", isbn: "978-2-07-04676-2", placement: "T", langue: "Français", langue_origine: null, traduit: false, type_edition: "bilingue", commentaire: "", couverture: "images/shkp-1.jpg" },
         { titre: "L'insoutenable légèreté de l'être", auteur: "Kundera", genre:"roman", edition:"Folio" , isbn:"978-2-07-289265-3", placement:"C3", langue:"Français", langue_origine: "Tchèque" , traduit: true , type_edition: "moderne", commentaire:"-", couverture:"images/kundera-1.jpg"},
-        { titre: "Le médecin malgé lui", auteur: "Molière", genre:"Théâtre", edition:"Pocket" , isbn:"978-2-266-29003-6", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: false , commentaire:"-", couverture:"images/moliere-1.jpg"},
-        { titre: "Les Nuits blanches", auteur: "Fédor Dostoïevski", genre:"Roman", edition:"Foilo 3€" , isbn:"978-2-07-302580-7", placement:"C3", langue:"Français", langue_origine: "Russe", traduit: true, type_edition: "moderne", commentaire:"-", couverture:"images/dostoievski-1.jpg"},
-        { titre: "La Guerre des boutons", auteur: "Louis Pergaud", genre:"Roman", edition:" Folio" , isbn:"2-07-036758-4", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/pergaud-1.jpg"},
+        { titre: "Le médecin malgré lui", auteur: "Molière", genre:"Théâtre", edition:"Pocket" , isbn:"978-2-266-29003-6", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: false , commentaire:"-", couverture:"images/moliere-1.jpg"},
+        { titre: "Les Nuits blanches", auteur: "Fédor Dostoïevski", genre:"Roman", edition:"Folio 3€" , isbn:"978-2-07-302580-7", placement:"C3", langue:"Français", langue_origine: "Russe", traduit: true, type_edition: "moderne", commentaire:"-", couverture:"images/dostoievski-1.jpg"},
+        { titre: "La Guerre des boutons", auteur: "Louis Pergaud", genre:"Roman", edition:"Folio" , isbn:"2-07-036758-4", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/pergaud-1.jpg"},
         { titre: "Pauline", auteur: "George Sand", genre:"Roman", edition:"Folio 3€" , isbn:"978-2-07-301355-2", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/sand-1.jpg"},
         { titre: "La place", auteur: "Annie Ernaux", genre:"Roman", edition:"Folio" , isbn:"978-2-07-037722-0", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/ernaux-1.jpg"},
         { titre: "La honte", auteur: "Annie Ernaux", genre:"Roman", edition:"Gallimard" , isbn:"2-07-074787-5", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/ernaux-2.jpg"},
@@ -251,7 +251,7 @@ const livres = {
 
     scolaire: [
         // Exemple :
-        { titre: "Sindbad le marin (Les milles et Une Nuits)", auteur: "-", genre:"Roman", edition:"Librio 2€" , isbn:"978-2-290-17353-4", placement:"C3", langue:"Français", langue_origine: "Anglais" , traduit: true , type_edition: "moderne", commentaire:"-", couverture:"images/1001nuit.jpg"}
+        { titre: "Sindbad le marin (Les mille et Une Nuits)", auteur: "-", genre:"Roman", edition:"Librio 2€" , isbn:"978-2-290-17353-4", placement:"C3", langue:"Français", langue_origine: "Anglais" , traduit: true , type_edition: "moderne", commentaire:"-", couverture:"images/1001nuit.jpg"}
     ],
 
     litterature2: [
