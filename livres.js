@@ -219,6 +219,8 @@ const livres = {
         { titre: "Trois contes", auteur: "Gustave Falubert", genre:"Conte", edition:"Librio" , isbn:"2-290-31475-7", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"", couverture:"images/flaubert-1.jpg"},
         { titre: "Voyage au bout de la nuit", auteur: "Céline", genre:"Roman", edition:"Folio" , isbn:"978-2-07-036028-4", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"", couverture:"images/celine-1.jpg"},
         { titre: "La République", auteur: "Platon", genre:"Philosophie", edition:"GF" , isbn:"978-2-0813-869-3", placement:"C3", langue:"Français", langue_origine: "Grec", traduit: true, type_edition: "moderne", commentaire:"", couverture:"images/platon-1.jpg"},
+        { titre: "Notre quelque part", auteur: "Nii Ayikwei Parkes", genre:"Roman", edition:"Zulma" , isbn:"978-2-84304-963-7", placement:"C3", langue:"Français", langue_origine: "Anglais", traduit: true, type_edition: "moderne", commentaire:"Chef-d'ouvre de la traduction", couverture:"images/parkes.jpg"},
+        { titre: "Rhétorique", auteur: "Aristote", genre:"-", edition:"GF" , isbn:"978-2-0807-1135-9", placement:"C3", langue:"Français", langue_origine: "Grec", traduit: true, type_edition: "moderne", commentaire:"", couverture:"images/aristote-1.jpg"},
         { titre: "", auteur: "", genre:"", edition:"" , isbn:"", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"", couverture:""}
     ],
 
