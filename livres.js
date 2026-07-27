@@ -25,7 +25,6 @@ const livres = {
 
         // --- Nouveaux livres ajoutés depuis la feuille "Littérature" ---
         { titre: "Les Misérables III", auteur: "Victor HUGO", genre: "Littérature FR de XIXe", edition: "Livre du poche", isbn: "-", placement: "C2", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
-        { titre: "Les mots immigrés", auteur: "Eric ORSENNA", genre: "Patrimoine / Fiction littéraire", edition: "Le livre de poche", isbn: "978-2-253-94095-1", placement: "C1 -T", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "Le roi se meurt", auteur: "Ionesco", genre: "Théâtre", edition: "Folio", isbn: "-", placement: "C1-T", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "Nouvelles Histoires extraordinaires", auteur: "Edgar Poe", genre: "Fiction", edition: "Le livre de poche", isbn: "-", placement: "C1", langue: "Français", langue_origine: "Anglais", traduit: true, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "Le marquis de Villemer", auteur: "George Sand", genre: "Roman", edition: "-", isbn: "-", placement: "C1", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
@@ -125,7 +124,7 @@ const livres = {
         { titre: "Contes du jour et de la nuit", auteur: "Maupassant", genre: "Contes", edition: "GF-Flammarion", isbn: "2-08-070292-0", placement: "S2", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "Contes libertins", auteur: "Jean de la Fontaine", genre: "Contes", edition: "Succès du livre", isbn: "2743419784", placement: "S2", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "Cinq semaines en ballon", auteur: "Jules Verne", genre: "Roman", edition: "Maxi-poche", isbn: "2-7434-3161-X", placement: "S2", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
-        { titre: "Germinal", auteur: "Zola", genre: "Roman", edition: "Le livre de poche", isbn: "2-253-00422-7", placement: "C3", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "zola-1.jpg" },
+        { titre: "Germinal", auteur: "Zola", genre: "Roman", edition: "Le livre de poche", isbn: "2-253-00422-7", placement: "C3", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "images/zola-1.jpg" },
         { titre: "Moderato cantabile", auteur: "Marguerite Duras", genre: "Roman", edition: "Éditions de Minuit", isbn: "2-7073-0314-3", placement: "S2", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "Lettres de mon moulin", auteur: "Alphonse Daudet", genre: "Roman", edition: "Folio", isbn: "2-07-040889-X", placement: "S2", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "Lettres de la Marquise de M***", auteur: "Claude Crébillon", genre: "-", edition: "Rivages poche", isbn: "2-7436-0703-3", placement: "S2", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
@@ -196,7 +195,7 @@ const livres = {
         { titre: "Hernani", auteur: "Victor HUGO", genre: "Théâtre", edition: "Librio 2€", isbn: "978-2-290-07565-4", placement: "T", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "L'épopée de Gilgamesh", auteur: "-", genre: "Épopée", edition: "Folio Junior", isbn: "978-2-07-062761-5", placement: "T", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
         { titre: "La tragédie de Richard III", auteur: "Shakespeare", genre: "Théâtre", edition: "Folio théâtre", isbn: "978-2-07-046766-2", placement: "C1", langue: "Français", langue_origine: "Anglais", traduit: true, type_edition: "moderne", commentaire: "", couverture: "" },
-        { titre: " Les mots imigrés", auteur: " Erik Orsenna , Bernard Cerquiglini ", genre:"-", edition:"Le livre de poceh" , isbn:"978-2-253-94095-1", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"orse-1.jpg"}
+        { titre: " Les mots imigrés", auteur: " Erik Orsenna , Bernard Cerquiglini ", genre:"-", edition:"Le livre de poceh" , isbn:"978-2-253-94095-1", placement:"C3", langue:"Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire:"-", couverture:"images/orse-1.jpg"}
     ],
 
     asie: [
