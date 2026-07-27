@@ -315,8 +315,7 @@
             border-left: 4px solid #c75a8a;
         }
 
-        /* ===== NOUVEAU STYLE pour "bilingue" standard dans Littérature (Ambre) ===== */
-        /* MODIFICATION 1 : ajout des règles CSS pour la classe "bilingue-standard" */
+        /* Style pour "Bilingue standard" - Ambre / Doré */
         .book-card.bilingue-standard {
             background: linear-gradient(135deg, #fff8e1, #ffecb3);
             border-left: 4px solid #f57f17;
@@ -670,6 +669,9 @@
         <a href="#section-litterature" class="nav-btn"><i class="fas fa-feather-alt"></i> Littérature française</a>
         <a href="#section-asie" class="nav-btn"><i class="fas fa-landmark"></i> Asie</a>
         <a href="#section-academique" class="nav-btn"><i class="fas fa-flask"></i> Académique</a>
+        <!-- ===== NOUVEAUX BOUTONS : Jeunesse & Scolaire ===== -->
+        <a href="#section-jeunesse" class="nav-btn"><i class="fas fa-child"></i> Jeunesse</a>
+        <a href="#section-scolaire" class="nav-btn"><i class="fas fa-school"></i> Scolaire</a>
         <a href="#section-autres" class="nav-btn"><i class="fas fa-book"></i> Autres</a>
         <a href="#section-turc" class="nav-btn"><i class="fas fa-lira-sign"></i> Turc</a>
         <a href="#section-etranger" class="nav-btn"><i class="fas fa-globe"></i> Langues étrangères</a>
@@ -690,6 +692,18 @@
     <div id="section-academique" class="book-section">
         <div class="section-title"><i class="fas fa-graduation-cap"></i> 🎓 Ouvrages académiques</div>
         <div class="bookshelf" id="shelf-academique"></div>
+    </div>
+
+    <!-- ===== NOUVELLE SECTION : Jeunesse ===== -->
+    <div id="section-jeunesse" class="book-section">
+        <div class="section-title"><i class="fas fa-child"></i> 📚 Littérature Jeunesse · 青少年文学</div>
+        <div class="bookshelf" id="shelf-jeunesse"></div>
+    </div>
+
+    <!-- ===== NOUVELLE SECTION : Scolaire ===== -->
+    <div id="section-scolaire" class="book-section">
+        <div class="section-title"><i class="fas fa-school"></i> 📖 Lectures scolaires · 学校教材</div>
+        <div class="bookshelf" id="shelf-scolaire"></div>
     </div>
 
     <div id="section-autres" class="book-section">
@@ -860,7 +874,7 @@
             }
         }
 
-        // ===== MODIFICATION 3 : Affichage du type_edition pour la section française =====
+        // Affichage du type_edition pour la section française
         if (sectionType === "french" && book.type_edition) {
             let typeDisplay = book.type_edition;
             if (typeDisplay === 'bilingue-ancien-moderne') typeDisplay = 'Bilingue (ancien ↔ moderne)';
@@ -946,7 +960,6 @@
         return card;
     }
 
-    // ===== MODIFICATION 2 : fonction createFrenchCard modifiée =====
     function createFrenchCard(book, icon = "fa-book", section = "litterature") {
         const card = document.createElement('div');
         
@@ -957,7 +970,6 @@
             typeClass = 'bilingue-francais';
             badgeHtml = `<div class="badge-bilingue-fr"><i class="fas fa-exchange-alt"></i> Bilingue : ancien ↔ moderne</div>`;
         } else if (book.type_edition === 'bilingue') {
-            // Nouveau cas pour "bilingue" standard
             typeClass = 'bilingue-standard';
             badgeHtml = `<div class="badge-bilingue-standard"><i class="fas fa-language"></i> Bilingue (texte original)</div>`;
         }
@@ -1110,6 +1122,9 @@
         renderShelf("shelf-litterature", livres.litterature, "french", "litterature");
         renderShelf("shelf-asie", livres.asie, "asian", "asie");
         renderShelf("shelf-academique", livres.academique, "standard", "academique");
+        // ===== NOUVELLES LIGNES : Jeunesse & Scolaire =====
+        renderShelf("shelf-jeunesse", livres.jeunesse, "standard", "jeunesse");
+        renderShelf("shelf-scolaire", livres.scolaire, "standard", "scolaire");
         renderShelf("shelf-autres", livres.autres, "standard", "autres");
         renderShelf("shelf-turc", livres.turc, "standard", "turc");
         renderShelf("shelf-etranger", livres.etranger, "standard", "etranger");

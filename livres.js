@@ -240,6 +240,17 @@ const livres = {
         { titre: "Le développement du langage", auteur: "Agnès Florin", genre: "Psychologie développementale", edition: "DUNOP", isbn: "978-2-10-004195-4", placement: "C1", langue: "Français", commentaire: "", couverture: "" }
     ],
 
+    jeunesse: [
+        // Exemple :
+        { titre: "Le Petit Prince", auteur: "Antoine de Saint-Exupéry", genre: "Conte philosophique", edition: "Gallimard", isbn: "978-2-07-061275-8", placement: "J1", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "", couverture: "" },
+        { titre: "Harry Potter à l'école des sorciers", auteur: "J.K. Rowling", genre: "Fantasy", edition: "Folio Junior", isbn: "978-2-07-058518-6", placement: "J2", langue: "Français", langue_origine: "Anglais", traduit: true, type_edition: "moderne", commentaire: "", couverture: "" }
+    ],
+    
+    scolaire: [
+        // Exemple :
+        { titre: "Le Cid", auteur: "Corneille", genre: "Théâtre", edition: "Hatier (scolaire)", isbn: "978-2-401-06360-0", placement: "Scol1", langue: "Français", langue_origine: null, traduit: false, type_edition: "moderne", commentaire: "Édition avec dossier pédagogique", couverture: "" }
+    ],
+
     autres: [
         // Livres déjà présents
         { titre: "Chattitudes", auteur: "Sayo Koizumi", genre: "Sur les chats", edition: "Larousse", isbn: "978-2-03-5879330-1", placement: "C1", langue: "Français", commentaire: "", couverture: "" },
