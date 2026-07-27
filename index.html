@@ -854,7 +854,7 @@
             <div class="comment-section">
                 <label class="comment-label"><i class="fas fa-comment-dots"></i> Mon commentaire</label>
                 <div class="comment-display">
-                    ${book.commentaire ? `<i class="fas fa-quote-left"></i> ${book.commentaire}` : '<span class="comment-empty"><i class="fas fa-pen"></i> Aucun commentaire pour le moment.</span>'}
+                    ${book.commentaire ? `<i class="fas fa-quote-left"></i> ${escapeHtml(book.commentaire)}` : '<span class="comment-empty"><i class="fas fa-pen"></i> Aucun commentaire pour le moment.</span>'}
                 </div>
             </div>
         `;
